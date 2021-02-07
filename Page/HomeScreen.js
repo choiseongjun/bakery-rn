@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import styled from 'styled-components';
 import axios from 'axios';
+import { icons, images, SIZES, COLORS, FONTS } from '../constants'
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 
  
@@ -68,18 +69,45 @@ const HomeScreen = () => {
         return(
           bakeryData.map((item,index)=>
             <EachBread key={index}>
-              <ImageBackground style = {[styles.image, {flexDirection:'row',}]} source={{uri: "data:image/png;base64,"+item.image}}>
+                <View style={{width:220,marginTop:30}}>
+                  <Text style = {{fontWeight:'bold', fontSize: 20, color:COLORS.black }}>
+                    {item.entrpNm}
+                  </Text> 
+                  <View style={{width:190}}>
+                    <Text style = {{display:'flex',flexWrap:'wrap', fontSize: SIZES.base*1.8, color:COLORS.black }}>
+                      {item.loadAddr}
+                    </Text> 
+                  </View>
+                  <View style={{marginTop:40,display:'flex',flexDirection:'row'}}>
+                    <Text style = {{ fontSize: SIZES.base*1.8, color:COLORS.black }}>
+                      리뷰 5
+                    </Text> 
+                    <Text style = {{marginLeft:30, fontSize: SIZES.base*1.8, color:COLORS.black }}>
+                      연중무휴
+                    </Text> 
+                  </View>
+                </View>
+                
+               <Image
+                        source={{uri: "data:image/png;base64,"+item.image}}
+                        resizeMode="cover"
+                        style={{
+                            width: '50%',
+                            height: '100%'
+                        }}
+                    />
+              {/* <ImageBackground style = {[styles.image, {flexDirection:'row',}]} source={{uri: "data:image/png;base64,"+item.image}}>
                 <EachBread__Inbox>
                   <Text style = {{fontWeight:'bold', fontSize: 20, color:'rgb(250,250,250)' }}>{item.entrpNm}
                   </Text>
                 </EachBread__Inbox>
-                {/* <EachBread__Inbox style = {{ flexDirection:'column',backgroundColor:'rgba(0,0,0,0.1)', }}>
+                <EachBread__Inbox style = {{ flexDirection:'column',backgroundColor:'rgba(0,0,0,0.1)', }}>
                   <IconAntDesign style={{ marginBottom: 10, }} name='hearto' color='rgb(243,96,65)' size = {30}>
                     <Text style ={{color:'white', fontSize: 12, }}></Text>
                   </IconAntDesign>
                   <IconAntDesign style={{ marginBottom: 10, }} name='message1' color='rgb(243,96,65)' size = {30}></IconAntDesign>
                   <IconAntDesign style={{ marginBottom: 10, }} name='pushpino' color='rgb(243,96,65)' size = {30}></IconAntDesign>
-                </EachBread__Inbox> */}
+                </EachBread__Inbox>
                 <EachBread__Inbox_more>
                   <Text style = {{color:'white', fontSize:15, fontWeight:'700'}}>밀</Text>
                   <Text style = {{color:'white', fontSize:15, fontWeight:'700'}}>어</Text>
@@ -88,7 +116,7 @@ const HomeScreen = () => {
                   <Text style = {{color:'white', fontSize:15, fontWeight:'700'}}>보</Text>
                   <Text style = {{color:'white', fontSize:15, fontWeight:'700'}}>기</Text>
                 </EachBread__Inbox_more>
-              </ImageBackground>
+              </ImageBackground> */}
             </EachBread>
           )
         )
@@ -170,8 +198,6 @@ const HomeScreen = () => {
     height:60px;
     margin-right: 10px;
     color:white;
-    background-color: rgb(243,96,65);
-    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -207,7 +233,8 @@ const HomeScreen = () => {
     margin-top: 10px;
     background-color: white;
     display:flex;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
   `;
   
   const EachBread__Inbox = styled.View`
